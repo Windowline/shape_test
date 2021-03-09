@@ -35,8 +35,7 @@
                                                                          withFieldName:@"CNTRY_NAME"
                                                                     withColorForRegion:nil
                                                                      randomRegionColor:YES];
-    [self drawOverlaysWithGeoRegionStack:countryRegionStack
-                               onMapView:self.mapView];
+    [self drawOverlaysWithGeoRegionStack:countryRegionStack onMapView:self.mapView];
 }
 
 #pragma mark - IBActions

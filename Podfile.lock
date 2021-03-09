@@ -1,27 +1,35 @@
 PODS:
-  - MMDrawerController (0.4.0):
-    - MMDrawerController/Core (= 0.4.0)
-    - MMDrawerController/MMDrawerBarButtonItem (= 0.4.0)
-    - MMDrawerController/MMDrawerVisualStates (= 0.4.0)
-    - MMDrawerController/Subclass (= 0.4.0)
-  - MMDrawerController+Storyboard (0.0.1):
-    - MMDrawerController (~> 0.4.0)
-  - MMDrawerController/Core (0.4.0)
-  - MMDrawerController/MMDrawerBarButtonItem (0.4.0):
+  - MMDrawerController (0.6.0):
+    - MMDrawerController/Core (= 0.6.0)
+    - MMDrawerController/MMDrawerBarButtonItem (= 0.6.0)
+    - MMDrawerController/MMDrawerVisualStates (= 0.6.0)
+    - MMDrawerController/Subclass (= 0.6.0)
+  - "MMDrawerController+Storyboard (0.0.2)":
+    - MMDrawerController
+  - MMDrawerController/Core (0.6.0)
+  - MMDrawerController/MMDrawerBarButtonItem (0.6.0):
     - MMDrawerController/Core
-  - MMDrawerController/MMDrawerVisualStates (0.4.0):
+  - MMDrawerController/MMDrawerVisualStates (0.6.0):
     - MMDrawerController/Core
-  - MMDrawerController/Subclass (0.4.0):
+  - MMDrawerController/Subclass (0.6.0):
     - MMDrawerController/Core
   - shapelib (1.3)
 
 DEPENDENCIES:
-  - MMDrawerController+Storyboard
+  - "MMDrawerController+Storyboard"
   - shapelib
 
-SPEC CHECKSUMS:
-  MMDrawerController: b3731a50b80a7b2c017ac1c4e20f64724fbca006
-  MMDrawerController+Storyboard: d1bde200dfd22d9caac6187cac4fa4ce62ce0a9b
-  shapelib: 622b987882111dd347fd30062319e896e8e74bed
+SPEC REPOS:
+  trunk:
+    - MMDrawerController
+    - "MMDrawerController+Storyboard"
+    - shapelib
 
-COCOAPODS: 0.35.0
+SPEC CHECKSUMS:
+  MMDrawerController: e3a54a5570388463ad3b36975251575b50c4e1a0
+  "MMDrawerController+Storyboard": c98f86c0f32cdef1d466d19a7da3ad2fc6c6ac00
+  shapelib: 70f767e1e6484b824bd9986613afb66cb16e9df4
+
+PODFILE CHECKSUM: da98893d20cebad660a378043de9c672730d66b9
+
+COCOAPODS: 1.10.1

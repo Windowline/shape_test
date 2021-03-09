@@ -792,11 +792,13 @@ void check_theme_bnd()
 
 int clip_boundary()
 {
+  //  return 1;
+    
     int  inside;
     int  prev_outside;
     int  i2;
     int  j2;
-    
+
     /*** FIRST check the boundary of the feature ***/
     if ( ( (psCShape->dfXMin < cxmin) && (psCShape->dfXMax < cxmin) ) ||
          ( (psCShape->dfYMin < cymin) && (psCShape->dfYMax < cymin) ) ||
@@ -806,37 +808,37 @@ int clip_boundary()
         if (ierase) return(1); /** WRITE RECORD **/
         else   return(0); /** SKIP  RECORD **/
     }
-       
+
     if ( (psCShape->dfXMin >= cxmin) && (psCShape->dfXMax <= cxmax) &&
          (psCShape->dfYMin >= cymin) && (psCShape->dfYMax <= cymax) )
     {   /** Feature is totally inside clip area **/
         if (ierase) return(0); /** SKIP  RECORD **/
         else   return(1); /** WRITE RECORD **/
     }
-            
-    if (iinside) 
+
+    if (iinside)
     { /** INSIDE * Feature might touch the boundary or could be outside **/
         if (ierase)  return(1); /** WRITE RECORD **/
         else    return(0); /** SKIP  RECORD **/
     }
-       
+
     if (itouch)
     {   /** TOUCH **/
-        if ( ( (psCShape->dfXMin <= cxmin) || (psCShape->dfXMax >= cxmax) ) && 
+        if ( ( (psCShape->dfXMin <= cxmin) || (psCShape->dfXMax >= cxmax) ) &&
              (psCShape->dfYMin >= cymin) && (psCShape->dfYMax <= cymax)    )
         {   /** Feature intersects the clip boundary only on the X axis **/
             if (ierase) return(0); /** SKIP  RECORD **/
             else   return(1); /** WRITE RECORD **/
         }
 
-        if (   (psCShape->dfXMin >= cxmin) && (psCShape->dfXMax <= cxmax)   && 
+        if (   (psCShape->dfXMin >= cxmin) && (psCShape->dfXMax <= cxmax)   &&
                ( (psCShape->dfYMin <= cymin) || (psCShape->dfYMax >= cymax) )  )
         {   /** Feature intersects the clip boundary only on the Y axis **/
             if (ierase) return(0); /** SKIP  RECORD **/
             else   return(1); /** WRITE RECORD **/
         }
-               
-        for( j2 = 0; j2 < psCShape->nVertices; j2++ ) 
+
+        for( j2 = 0; j2 < psCShape->nVertices; j2++ )
         {   /** At least one vertex must be inside the clip boundary **/
             if ( (psCShape->padfX[j2] >= cxmin  &&  psCShape->padfX[j2] <= cxmax) ||
                  (psCShape->padfY[j2] >= cymin  &&  psCShape->padfY[j2] <= cymax)  )
@@ -845,23 +847,23 @@ int clip_boundary()
                 else   return(1); /** WRITE RECORD **/
             }
         }
-               
-        /** All vertices are outside the clip boundary **/ 
+
+        /** All vertices are outside the clip boundary **/
         if (ierase) return(1); /** WRITE RECORD **/
         else   return(0); /** SKIP  RECORD **/
     }   /** End TOUCH **/
-          
+
     if (icut)
     {   /** CUT **/
         /*** Check each vertex in the feature with the Boundary and "CUT" ***/
         /*** THIS CODE WAS NOT COMPLETED!  READ NOTE AT THE BOTTOM ***/
         i2=0;
         prev_outside=FALSE;
-        for( j2 = 0; j2 < psCShape->nVertices; j2++ ) 
+        for( j2 = 0; j2 < psCShape->nVertices; j2++ )
         {
             inside = psCShape->padfX[j2] >= cxmin  &&  psCShape->padfX[j2] <= cxmax  &&
                 psCShape->padfY[j2] >= cymin  &&  psCShape->padfY[j2] <= cymax ;
-                      
+
             if (ierase) inside=(! inside);
             if (inside)
             {
@@ -885,18 +887,22 @@ int clip_boundary()
                 }
             }
         }
-             
+
         printf("Vertices:%d   OUT:%d   Number of Parts:%d\n",
                psCShape->nVertices,i2, psCShape->nParts );
-               
+
         psCShape->nVertices = i2;
-             
+
         if (i2 < 2) return(0); /** SKIP RECORD **/
         /*** (WE ARE NOT CREATING INTERESECTIONS and some lines could be reduced to one point) **/
-        
+
         if (i2 == 0) return(0); /** SKIP  RECORD **/
         else    return(1); /** WRITE RECORD **/
-    }  /** End CUT **/
+    }  /** End CUT **/ else {
+        
+        return(1);
+        
+    }
 }
 
 
